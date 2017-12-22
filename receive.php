@@ -10,7 +10,7 @@ $test=false;
 if($dane_testowe==1){
 	for($i=0;$i<6;$i++){
 		$tab[$i]=rand(1,60);
-		} 
+	} 
 	$szer_test=500;
 	$wys_test=500;
 	$id_kolor_test=10;
@@ -20,7 +20,7 @@ if($dane_testowe==1){
 else{
 	for($i=0;$i<count($tab2);$i++){
 		$tab=array_push_assoc($tab,$tab1[$i],$tab2[$i]);
-		}
+	}
 	wykres($tab,$szer,$wys,$id_kolor,$test);
 }
 
@@ -35,40 +35,41 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
 	$color=imagecolorallocate($im,255,255,255);
 	//Kolory slupkow
 	$kolor[0] = imagecolorallocate($im, 255,0,0);
-    $kolor[1] = imagecolorallocate($im, 255, 255, 0);
-    $kolor[2] = imagecolorallocate($im, 0, 255, 0);
-    $kolor[3] = imagecolorallocate($im, 0, 255, 255);
-    $kolor[4] = imagecolorallocate($im, 0, 0, 255);
-    $kolor[5] = imagecolorallocate($im, 255, 0, 255);
-    $kolor[6] = imagecolorallocate($im, 255, 255, 128);
-    $kolor[7] = imagecolorallocate($im, 0, 255, 128);
-    $kolor[8] = imagecolorallocate($im, 128, 255, 255);
-    $kolor[9] = imagecolorallocate($im, 128, 128, 255);
-    $kolor[10] = imagecolorallocate($im, 255, 128, 64);
-    $kolor[11] = imagecolorallocate($im, 192, 192, 192);
-    $kolor[12] = imagecolorallocate($im, 255, 255, 255);
-    $kolor[13] = imagecolorallocate($im, 0, 0, 0);
+	$kolor[1] = imagecolorallocate($im, 255, 255, 0);
+	$kolor[2] = imagecolorallocate($im, 0, 255, 0);
+	$kolor[3] = imagecolorallocate($im, 0, 255, 255);
+	$kolor[4] = imagecolorallocate($im, 0, 0, 255);
+	$kolor[5] = imagecolorallocate($im, 255, 0, 255);
+	$kolor[6] = imagecolorallocate($im, 255, 255, 128);
+	$kolor[7] = imagecolorallocate($im, 0, 255, 128);
+	$kolor[8] = imagecolorallocate($im, 128, 255, 255);
+	$kolor[9] = imagecolorallocate($im, 128, 128, 255);
+	$kolor[10] = imagecolorallocate($im, 255, 128, 64);
+	$kolor[11] = imagecolorallocate($im, 192, 192, 192);
+	$kolor[12] = imagecolorallocate($im, 255, 255, 255);
+	$kolor[13] = imagecolorallocate($im, 0, 0, 0);
 	//Kolory efektu 3D
 	$kolor_c[0] = imagecolorallocate($im, 128,0,0);
-    $kolor_c[1] = imagecolorallocate($im, 128, 128, 0);
-    $kolor_c[2] = imagecolorallocate($im, 0, 128, 0);
-    $kolor_c[3] = imagecolorallocate($im, 0, 128, 128);
-    $kolor_c[4] = imagecolorallocate($im, 0, 0, 128);
-    $kolor_c[5] = imagecolorallocate($im, 128, 0, 128);
-    $kolor_c[6] = imagecolorallocate($im, 128, 128, 64);
-    $kolor_c[7] = imagecolorallocate($im, 0, 64, 64);
-    $kolor_c[8] = imagecolorallocate($im, 0, 128, 255);
-    $kolor_c[9] = imagecolorallocate($im, 0, 64, 128);
-    $kolor_c[10] = imagecolorallocate($im, 128, 64, 0);
-    $kolor_c[11] = imagecolorallocate($im, 128, 128, 128);
-    $kolor_c[12] = imagecolorallocate($im, 255, 255, 255);
-    $kolor_c[13] = imagecolorallocate($im, 0, 0, 0);
+	$kolor_c[1] = imagecolorallocate($im, 128, 128, 0);
+	$kolor_c[2] = imagecolorallocate($im, 0, 128, 0);
+	$kolor_c[3] = imagecolorallocate($im, 0, 128, 128);
+	$kolor_c[4] = imagecolorallocate($im, 0, 0, 128);
+	$kolor_c[5] = imagecolorallocate($im, 128, 0, 128);
+	$kolor_c[6] = imagecolorallocate($im, 128, 128, 64);
+	$kolor_c[7] = imagecolorallocate($im, 0, 64, 64);
+	$kolor_c[8] = imagecolorallocate($im, 0, 128, 255);
+	$kolor_c[9] = imagecolorallocate($im, 0, 64, 128);
+	$kolor_c[10] = imagecolorallocate($im, 128, 64, 0);
+	$kolor_c[11] = imagecolorallocate($im, 128, 128, 128);
+	$kolor_c[12] = imagecolorallocate($im, 255, 255, 255);
+	$kolor_c[13] = imagecolorallocate($im, 0, 0, 0);
 	
 	$ilosc_elementow=count($tab);
 	$suma=0;
 	foreach($tab as $klucz=>$wart){
 		$suma+=$wart;
 	}
+	
 	//Wyliczanie wartosci procentowych podanych danych
 	foreach($tab as $klucz=>$wart){
 		$procenty[$klucz]=($wart/$suma)*100;
@@ -89,7 +90,7 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
 	$wysokosc_robocza=$wysokosc-$miejsce_na_legende;
 	//Linie wyznaczajce wykres
 	imageline($im, 0, $wysokosc_robocza, $szerokosc, $wysokosc_robocza, $kolor[13]);
-    imageline($im,$miejsce_na_skale, 0,$miejsce_na_skale, $wysokosc_robocza, $kolor[13]);
+	imageline($im,$miejsce_na_skale, 0,$miejsce_na_skale, $wysokosc_robocza, $kolor[13]);
 	$skok_x=($wysokosc_robocza)/10;
 	$skok=$skok_x;
 	$i=1;
