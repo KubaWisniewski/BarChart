@@ -16,10 +16,11 @@ $wys_test=500;
 $id_kolor_test=10;
 $test=true;
 wykres($tab,$szer_test,$wys_test,$id_kolor_test,$test);
-}else{
+}
+else{
 for($i=0;$i<count($tab2);$i++){
 	$tab=array_push_assoc($tab,$tab1[$i],$tab2[$i]);
-}
+	}
 wykres($tab,$szer,$wys,$id_kolor,$test);
 }
 
@@ -89,7 +90,6 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
 	//Linie wyznaczajce wykres
 	imageline($im, 0, $wysokosc_robocza, $szerokosc, $wysokosc_robocza, $kolor[13]);
     imageline($im,$miejsce_na_skale, 0,$miejsce_na_skale, $wysokosc_robocza, $kolor[13]);
-	
 	$skok_x=($wysokosc_robocza)/10;
 	$skok=$skok_x;
 	$i=1;
@@ -111,7 +111,6 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
             $x+=($odstep+$szer_slupka);       
 			$i++;
 		}
-		
     }
 	$x=0;$i=0;
 	foreach($tab as $klucz =>$wart){
@@ -119,8 +118,9 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
 		imagefilledrectangle($im,$odlegloscOdLewejKrawedzi+$x,$wysokosc_robocza-$wys_slupka,$odlegloscOdLewejKrawedzi+$szer_slupka+$x,$wysokosc_robocza,$kolor[$kolor_wykresu[$i]]);
 		$x+=($odstep+$szer_slupka);
 		$i++;
+		}
 	}
-	}else{
+	else{
 	for ($j=1; $j<=floor($odstep*0.5); $j++) {
 		//Rysowanie efektu 3D
 		$x=0;$i=0;
@@ -136,9 +136,8 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
 		$wys_slupka=($wysokosc_robocza*($procenty[$klucz]/100));
 		imagefilledrectangle($im,$odlegloscOdLewejKrawedzi+$x,$wysokosc_robocza-$wys_slupka,$odlegloscOdLewejKrawedzi+$szer_slupka+$x,$wysokosc_robocza,$kolor[$kolor_wykresu]);
 		$x+=($odstep+$szer_slupka);
+		}
 	}
-	}
-	
 	
 	//Rysownaie podpisow do slupkow
 	$x=0;
@@ -148,10 +147,6 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
 		$x+=($odstep+$szer_slupka);
 	}
 	imagejpeg($im);
-	imagedestroy($im);
-	
-	
+	imagedestroy($im);	
 }
-
-
 ?>
