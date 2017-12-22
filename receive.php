@@ -25,8 +25,8 @@ else{
 }
 
 function array_push_assoc($array, $key, $value){
-    $array[$key] = $value;
-    return $array;
+	$array[$key] = $value;
+	return $array;
 }
 
 function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){	
@@ -101,7 +101,7 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
         imagestring($im,$czcionka_skala, 0, $wysokosc_robocza-$skok,($i*10)."%", $kolor[13]);
 		++$i;
 		$skok+=$skok_x;
-    }
+	}
 	//Rysowanie slupkow
 	if($test==false){
 		for ($j=1; $j<=floor($odstep*0.5); $j++) {
@@ -126,27 +126,27 @@ function wykres($tab,$szerokosc,$wysokosc,$kolor_wykresu,$test){
 	for ($j=1; $j<=floor($odstep*0.5); $j++) {
 		//Rysowanie efektu 3D
 		$x=0;$i=0;
-			foreach($tab as $klucz => $wart) {
-				$wys_slupka=($wysokosc_robocza*($procenty[$klucz]/100));
-				imagefilledrectangle($im, $odlegloscOdLewejKrawedzi+$x+$j, $wysokosc_robocza-$wys_slupka-$j, $odlegloscOdLewejKrawedzi+$szer_slupka+$x+$j, $wysokosc_robocza-$j, $kolor_c[$kolor_wykresu]);
-				$x+=($odstep+$szer_slupka);       
-				$i++;
-			}	
-		}
-	$x=0;
-		foreach($tab as $klucz =>$wart){
+		foreach($tab as $klucz => $wart) {
 			$wys_slupka=($wysokosc_robocza*($procenty[$klucz]/100));
-			imagefilledrectangle($im,$odlegloscOdLewejKrawedzi+$x,$wysokosc_robocza-$wys_slupka,$odlegloscOdLewejKrawedzi+$szer_slupka+$x,$wysokosc_robocza,$kolor[$kolor_wykresu]);
-			$x+=($odstep+$szer_slupka);
-		}
+			imagefilledrectangle($im, $odlegloscOdLewejKrawedzi+$x+$j, $wysokosc_robocza-$wys_slupka-$j, $odlegloscOdLewejKrawedzi+$szer_slupka+$x+$j, $wysokosc_robocza-$j, $kolor_c[$kolor_wykresu]);
+			$x+=($odstep+$szer_slupka);       
+			$i++;
+		}	
+	}
+	$x=0;
+	foreach($tab as $klucz =>$wart){
+		$wys_slupka=($wysokosc_robocza*($procenty[$klucz]/100));
+		imagefilledrectangle($im,$odlegloscOdLewejKrawedzi+$x,$wysokosc_robocza-$wys_slupka,$odlegloscOdLewejKrawedzi+$szer_slupka+$x,$wysokosc_robocza,$kolor[$kolor_wykresu]);
+		$x+=($odstep+$szer_slupka);
+	}
 	}
 	
 	//Rysownaie podpisow do slupkow
 	$x=0;
-		foreach($tab as $klucz =>$wart){
-			imagestring($im,$czcionka_podpisy,$odlegloscOdLewejKrawedzi+$x+($szer_slupka*0.5),$wysokosc_robocza+5,$klucz,$kolor[13]);	  	
-			$x+=($odstep+$szer_slupka);
-		}
+	foreach($tab as $klucz =>$wart){
+		imagestring($im,$czcionka_podpisy,$odlegloscOdLewejKrawedzi+$x+($szer_slupka*0.5),$wysokosc_robocza+5,$klucz,$kolor[13]);	  	
+		$x+=($odstep+$szer_slupka);
+	}
 	imagejpeg($im);
 	imagedestroy($im);	
 }
